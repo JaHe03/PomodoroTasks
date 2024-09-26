@@ -1,0 +1,63 @@
+.leftSidebar {
+    height: 100%; /* 100% Full-height */
+    width: 14rem; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    background-color: #fcfafa; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 30px; /* Place content 60px from the top */
+    transition: width 0.5s ease; 
+}
+
+.leftSidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #645151;
+    display: block;
+    transition: 0.3s;
+}
+
+.userSidebar h2 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #090909;
+    display: block;
+    transition: 0.3s;
+}
+
+#settingForm {
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset {
+    transition: .2s;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 1px;
+}
+
+label {
+    color: black;
+    font-size: 1rem;
+    font-style: bold;
+    margin: 1px;
+}
+
+input type[type="number"] {
+    
+}
+
+
+
+
+
+
+
+

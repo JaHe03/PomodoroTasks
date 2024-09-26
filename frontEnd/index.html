@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PomodoroTasks</title>
+    <link rel="stylesheet" href="styles/main.css" /> <!-- Link to your CSS file -->
 </head>
 <body>
-    <h1>Home</h1>
-    <p>Welcome to the home page.</p>
-    <p><a href="about.php">About</a></p>
+    <div class="pomodoroContainer"> <!--everything in this div. pomodoroCont.css-->
+        <header>
+            <h1>PomodoroTasks</h1>
+            <p>
+                The Pomodoro technique is a time management method where you set a specific amount of time to work on a task. 
+                After the time is up, you take a short break! You repeat this process for a certain number of cycles, 
+                followed by a longer break.
+            </p>
+        </header>
+
+        <!-- Timer display and controls -->
+        <section class="timerContainer">
+            <div class="userSelectManualTime">
+                <button id="pomodoroBtn">Pomodoro</button>
+                <button id="shortBreakBtn">Short Break</button>
+                <button id="longBreakBtn">Long Break</button>
+            </div>
+            <h1 id="time">25:00</h1>
+            <div class="controls">
+                <button id="pauseBtn">Pause</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </section>
+        
+        <!-- Completed sessions count -->
+        <section class="session-info">
+            <h2>Sessions Completed: <span id="sessionCount">0</span></h2>
+        </section>
+    </div>
+
+    <!-- Sidebars for task list and settings -->
+    <section class="rightSidebar taskContainer"> <!-- taskCont.css-->
+        <h2>Tasks</h2>
+        <ul id="taskList">
+            <!-- Task list will be displayed here -->
+        </ul>
+        <form id="taskForm">
+            <label for="taskInput">Add a Task:</label>
+            <input type="text" id="taskInput" placeholder="Add a task..." />
+            <button type="submit" id="addTaskBtn">Add Task</button>
+        </form>
+        <div class="taskControls">
+            <button id="deleteTaskBtn">Delete Task</button>
+            <button id="moveUpTaskBtn">Move Up Task</button>
+            <button id="moveDownTaskBtn">Move Down Task</button>
+        </div>
+    </section>
+
+    <aside class="leftSidebar userSidebar"> <!-- userSidebar.css-->
+        <h2>Settings</h2>
+        <form id="settingsForm">
+            <fieldset>
+                <label for="sessionLength">Session Length:</label>
+                <input type="number" id="sessionLength" value="25" />
+            </fieldset>
+            <fieldset>
+                <label for="breakLength">Break Length:</label>
+                <input type="number" id="breakLength" value="5" />
+            </fieldset>
+            <fieldset>
+                <label for="longBreakLength">Long Break Length:</label>
+                <input type="number" id="longBreakLength" value="15" />
+            </fieldset>
+            <fieldset>
+                <label for="longBreakInterval">Long Break Interval:</label>
+                <input type="number" id="longBreakInterval" value="4" />
+            </fieldset>
+        </form>
+    </aside>
+
+    <script src="index.js"></script> <!-- Link to your JavaScript file -->
+</body>
+
 </html>

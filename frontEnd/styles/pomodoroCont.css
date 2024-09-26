@@ -1,0 +1,45 @@
+/* pomodoro.css */
+.pomodoroContainer {
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pomodoroContainer header {
+    background-color: #645151; 
+    padding: 1px;
+    border: 2px solid red;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.pomodoroContainer h1 {
+    font-size: 3rem;
+    margin-bottom: 1px;
+}
+
+.pomodoroContainer p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.pomodoroContainer button {
+    background-color: #f8f3f3;
+    color: #000000;
+    border: solid 3px #000000;
+    padding: 10px 20px;
+    margin: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    flex-direction: column;
+}
