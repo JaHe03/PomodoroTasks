@@ -24,7 +24,7 @@
                 <button id="shortBreakBtn">Short Break</button>
                 <button id="longBreakBtn">Long Break</button>
             </div>
-            <h1 id="time">25:00</h1>
+            <h1 id="time" aria-live="polite">25:00</h1>
             <div class="controls">
                 <button id="pauseBtn">Pause</button>
                 <button id="resetBtn">Reset</button>
@@ -32,30 +32,37 @@
         </section>
         
         <!-- Completed sessions count -->
-        <section class="session-info">
+        <section class="sessionInfo">
             <h2>Sessions Completed: <span id="sessionCount">0</span></h2>
         </section>
     </div>
 
+    <!-- Open buttons for sidebars -->
+    <button class="taskOpenBtn" onclick="openTaskSidebar()">Open Task List</button>
+    <button class="userOpenBtn" onclick="openUserSidebar()">Open Settings</button>
+
     <!-- Sidebars for task list and settings -->
-    <section class="rightSidebar taskContainer"> <!-- taskCont.css-->
+    <aside class="rightSidebar taskSidebar" aria-label="Task List Sidebar"> <!-- taskCont.css-->
+        <span class="taskCloseBtn" onclick="closeSidebar()">x</span>
         <h2>Tasks</h2>
         <ul id="taskList">
-            <!-- Task list will be displayed here -->
+            <li><input type="checkbox" /> Task 1</li>
+            <li><input type="checkbox" /> Task 2</li>
         </ul>
         <form id="taskForm">
             <label for="taskInput">Add a Task:</label>
             <input type="text" id="taskInput" placeholder="Add a task..." />
-            <button type="submit" id="addTaskBtn">Add Task</button>
         </form>
         <div class="taskControls">
-            <button id="deleteTaskBtn">Delete Task</button>
-            <button id="moveUpTaskBtn">Move Up Task</button>
-            <button id="moveDownTaskBtn">Move Down Task</button>
-        </div>
-    </section>
+            <button id="addTaskBtn" class="commonButton">Add Task</button>
+            <button id="deleteTaskBtn" class="commonButton">Delete Task</button>
+            <button id="moveUpTaskBtn" class="commonButton">Move Up Task</button>
+            <button id="moveDownTaskBtn" class="commonButton">Move Down Task</button>
+        </div>  
+    </aside>
 
-    <aside class="leftSidebar userSidebar"> <!-- userSidebar.css-->
+    <aside class="leftSidebar userSidebar" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
+        <span class="userCloseBtn" onclick="closeSidebar()">x</span>
         <h2>Settings</h2>
         <form id="settingsForm">
             <fieldset>
@@ -75,7 +82,16 @@
                 <input type="number" id="longBreakInterval" value="4" />
             </fieldset>
         </form>
+
+        <div class="theme-selector">
+            <button id="lightModeBtn">Light Mode</button>
+            <button id="darkModeBtn">Dark Mode</button>
+            <button id="defaultModeBtn">Default Mode</button>
+        </div>
+        
     </aside>
+
+    
 
     <script src="index.js"></script> <!-- Link to your JavaScript file -->
 </body>

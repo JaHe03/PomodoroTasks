@@ -1,0 +1,88 @@
+.rightSidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: var(--background-color); /* Updated to use CSS variable */
+    overflow-x: auto;
+    padding-top: 60px;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
+}
+
+.taskCloseBtn {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 36px;
+    color: var(--text-color); /* Updated to use CSS variable */
+    cursor: pointer;
+    z-index: 2;
+}
+
+.taskOpenbBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    padding: 10px 15px;
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    color: var(--text-color); /* Updated to use CSS variable */
+    cursor: pointer;
+    border: none;
+}
+
+.taskSidebar h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 10px 10px;
+    color: var(--text-color); /* Updated to use CSS variable */
+    
+}
+
+#taskForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#addTaskBtn {
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    color: var(--text-color); /* Updated to use CSS variable */
+    border: solid;
+    padding: 10px 80px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#addTaskBtn:hover {
+    background-color: #0056b3; /* Specify a lighter or darker color directly */
+}
+
+.taskSidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.taskSidebar li {
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.taskSidebar li:hover {
+    background-color: var(--text-color); /* Use text color for hover */
+    color: var(--accent-color); /* Use accent color for hover */
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .rightSidebar {
+        width: 80%;
+    }
+}

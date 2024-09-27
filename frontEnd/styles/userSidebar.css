@@ -1,63 +1,77 @@
 .leftSidebar {
-    height: 100%; /* 100% Full-height */
-    width: 14rem; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
-    border-radius: 10px;
-    background-color: #fcfafa; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 30px; /* Place content 60px from the top */
-    transition: width 0.5s ease; 
+    background-color: var(--background-color);;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: width 0.5s ease;
 }
 
-.leftSidebar a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
+.userCloseBtn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 36px;
+    color: var(--text-color); /* Updated to use CSS variable */
+    cursor: pointer;
+    z-index: 2;
+}
+
+.userOpenBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     font-size: 20px;
-    color: #645151;
-    display: block;
-    transition: 0.3s;
+    padding: 10px 15px;
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    color: var(--text-color); /* Updated to use CSS variable */
+    cursor: pointer;
+    border: none;
+}
+
+.userSidebar {
+    background-color: var(--background-color);;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
 }
 
 .userSidebar h2 {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #090909;
-    display: block;
-    transition: 0.3s;
+    color: var(--text-color);;
+    font-size: 1.5rem;
+    margin: 10px 10px;
 }
 
-#settingForm {
+#settingsForm {
     display: flex;
     flex-direction: column;
 }
 
 fieldset {
-    transition: .2s;
-    border: 3px solid #000000;
-    border-radius: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-bottom: 15px;
     padding: 10px;
-    margin: 1px;
 }
 
 label {
-    color: black;
-    font-size: 1rem;
-    font-style: bold;
-    margin: 1px;
+    color: var(--text-color);
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-input type[type="number"] {
-    
+input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
-
-
-
-
-
-
-
+input[type="number"]:focus {
+    border-color: var(--accent-color); /* Updated to use CSS variable */
+    outline: solid 2px var(--accent-color); /* Updated to use CSS variable */
+}

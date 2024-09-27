@@ -1,0 +1,34 @@
+/* global.css */
+
+button {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border: solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for all buttons except close/open buttons */
+  button:hover {
+    background-color: #0056b3; /* Specify a lighter or darker color directly */
+  }
+  
+  /* Specific styles for close/open buttons if needed */
+  .userOpenBtn,
+  .taskOpenbBtn,
+  .userCloseBtn,
+  .taskCloseBtn {
+    background-color: var(--background-color); /* Define the background color for open buttons */
+    color: white; /* Text color for open buttons */
+  }
+  
+  .userOpenBtn:hover,
+  .taskOpenbBtn:hover,
+  .userCloseBtn:hover,
+  .taskCloseBtn:hover {
+    background-color: var(--background-color);/* Define a hover color for open/close buttons */
+  }
+  

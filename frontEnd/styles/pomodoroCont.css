@@ -1,17 +1,16 @@
 /* pomodoro.css */
 .pomodoroContainer {
-    border: 2px solid red;
     display: flex;
-    flex-direction: column;
     max-width: 600px;
-    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
     text-align: center;
 }
 
 .pomodoroContainer header {
-    background-color: #645151; 
     padding: 1px;
-    border: 2px solid red;
     border-radius: 20px;
     margin-top: 10px;
 }
@@ -27,13 +26,19 @@
 }
 
 .pomodoroContainer button {
-    background-color: #f8f3f3;
-    color: #000000;
-    border: solid 3px #000000;
+    background-color: var(--accent-color); /* Use the accent color defined in global.css */
+    color: #fff; /* Set text color to white */
+    border: solid; /* Remove border */
     padding: 10px 20px;
     margin: 1px;
     border-radius: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* Hover effect for buttons in the pomodoroContainer */
+.pomodoroContainer button:hover {
+    background-color: #0056b3; /* Specify hover color directly */
 }
 
 .timerContainer {
