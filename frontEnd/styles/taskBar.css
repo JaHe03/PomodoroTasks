@@ -50,7 +50,6 @@
 #addTaskBtn {
     background-color: var(--accent-color); /* Updated to use CSS variable */
     color: var(--text-color); /* Updated to use CSS variable */
-    border: solid;
     padding: 10px 80px;
     margin: 10px;
     border-radius: 10px;

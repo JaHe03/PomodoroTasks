@@ -28,7 +28,6 @@
 .pomodoroContainer button {
     background-color: var(--accent-color); /* Use the accent color defined in global.css */
     color: #fff; /* Set text color to white */
-    border: solid; /* Remove border */
     padding: 10px 20px;
     margin: 1px;
     border-radius: 10px;
