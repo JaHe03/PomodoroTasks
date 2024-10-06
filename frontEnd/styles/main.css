@@ -9,8 +9,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 :root {
+  --background-color: #3f3f4d;
+  --text-color: #ffffff;
+  --accent-color: #355454;
+}
+body.default-mode {
   --background-color: #3f3f4d;
   --text-color: #ffffff;
   --accent-color: #355454;
