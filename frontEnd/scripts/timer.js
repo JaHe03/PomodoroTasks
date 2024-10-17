@@ -5,7 +5,7 @@ let isRunning = false;  // Flag to check if the timer is running
 let timeLeft; // Remaining time in seconds
 let sessionCount = 0;   // Count completed sessions
 let lastDuration = 25 * 60; // Default Pomodoro time in seconds
-
+let isPomodoro = true; // Track if the current session is a break or Pomodoro
 
 // Get elements from the DOM
 const timeDisplay = document.getElementById('time');
@@ -31,12 +31,14 @@ function startTimer() {
         if (timeLeft === 0) {
             clearInterval(timer);
             isRunning = false;
-            sessionCount++;
-            sessionCountDisplay.textContent = sessionCount;
 
+            if (isPomodoro) {
+                sessionCount++;
+                sessionCountDisplay.textContent = sessionCount;
+            }
             nextSession();
         }
-    }, 1000);
+    }, 1000); // Ensure the timer runs every second
 }
 
 // Function to pause the timer
@@ -48,43 +50,63 @@ function pauseTimer() {
 
 // Function to reset the timer
 function resetTimer() {
-    clearInterval(timer);
-    isRunning = false;
-    timeLeft =  lastDuration// Reset to default Pomodoro time
-    timeDisplay.textContent = formatTime(timeLeft);
-    startTimer();
+    clearInterval(timer);   // Stop the timer
+    isRunning = false;      // Set running flag to false
+    timeLeft = lastDuration;  // Reset the timeLeft to the original duration
+    timeDisplay.textContent = formatTime(timeLeft);  // Display the reset time
+    // Optionally call setTimer here to ensure it's displayed correctly
+    setTimer(lastDuration);
 }
 
 // Function to set timer duration based on button clicked
 function setTimer(duration) {
-    clearInterval(timer);
-    isRunning = false;
-    lastDuration = duration * 60; // Save the last duration
-    timeLeft = lastDuration; // Convert minutes to seconds
-    timeDisplay.textContent = formatTime(timeLeft);
+    clearInterval(timer);  // Stop any running timer
+    isRunning = false;     // Mark timer as not running
+    lastDuration = duration;  // Update the last duration to the new duration (in seconds)
+    timeLeft = lastDuration;  // Set timeLeft to the new duration
+    timeDisplay.textContent = formatTime(timeLeft);  // Display the correct formatted time
 }
 
 // Function to get custom durations from input fields
 function getCustomDurations() {
-    const pomodoroLength = parseInt(document.getElementById('pomodoroLength').value, 10) || 25; // Default to 25 if empty
-    const shortBreakLength = parseInt(document.getElementById('breakLength').value, 10) || 5; // Default to 5 if empty
-    const longBreakLength = parseInt(document.getElementById('longBreakLength').value, 10) || 15; // Default to 15 if empty
-    
+    const pomodoroMinutes = parseInt(document.getElementById('pomodoroMinutes').value, 10) || 0;
+    const pomodoroSeconds = parseInt(document.getElementById('pomodoroSeconds').value, 10) || 0;
+
+    const shortBreakMinutes = parseInt(document.getElementById('breakMinutes').value, 10) || 0;
+    const shortBreakSeconds = parseInt(document.getElementById('breakSeconds').value, 10) || 0;
+
+    const longBreakMinutes = parseInt(document.getElementById('longBreakMinutes').value, 10) || 0;
+    const longBreakSeconds = parseInt(document.getElementById('longBreakSeconds').value, 10) || 0;
+
+    const longBreakInterval = parseInt(document.getElementById('longBreakInterval').value, 10) || 4;
 
     return {
-        pomodoro: pomodoroLength,
-        shortBreak: shortBreakLength,
-        longBreak: longBreakLength
+        pomodoro: (pomodoroMinutes * 60) + pomodoroSeconds, // Convert to total seconds
+        shortBreak: (shortBreakMinutes * 60) + shortBreakSeconds,
+        longBreak: (longBreakMinutes * 60) + longBreakSeconds,
+        longBreakInterval: longBreakInterval
     };
 }
 
 function nextSession() {
-    if (sessionCount % 4 === 0) {
-        setTimer(getCustomDurations().longBreak);
+    // Toggle between Pomodoro and break sessions
+    const customDurations = getCustomDurations();
+
+    if (isPomodoro) {
+        // If the current session was Pomodoro, switch to break
+        if (sessionCount % customDurations.longBreakInterval === 0) {
+            setTimer(customDurations.longBreak);  // Long break after X Pomodoro sessions
+        } else {
+            setTimer(customDurations.shortBreak);  // Short break otherwise
+        }
+        isPomodoro = false;  // Next session will be a break
     } else {
-        setTimer(getCustomDurations().shortBreak);
+        // If the current session was a break, switch to Pomodoro
+        setTimer(customDurations.pomodoro);  // Start new Pomodoro
+        isPomodoro = true;  // Next session will be Pomodoro
     }
-    startTimer();
+
+    startTimer();  // Automatically start the next session
 }
 
 // Expose functions to the global scope for use in index.js

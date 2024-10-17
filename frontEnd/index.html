@@ -74,29 +74,31 @@
         <h2>Settings</h2>
         <form id="settingsForm">
             <fieldset>
-                <label for="pomodoroLength">Pomodoro Length:</label>
-                <input type="number" id="pomodoroLength" value="25" />
+                <label for="pomodoroLength">Pomodoro Length (Minutes:Seconds):</label>
+                <input type="number" id="pomodoroMinutes" value="25" min="0" max="59" />
+                <input type="number" id="pomodoroSeconds" value="0" min="0" max="59" />
             </fieldset>
             <fieldset>
-                <label for="breakLength">Break Length:</label>
-                <input type="number" id="breakLength" value="5" />
+                <label for="breakLength">Break Length (Minutes:Seconds):</label>
+                <input type="number" id="breakMinutes" value="5" min="0" max="59" />
+                <input type="number" id="breakSeconds" value="0" min="0" max="59" />
             </fieldset>
             <fieldset>
-                <label for="longBreakLength">Long Break Length:</label>
-                <input type="number" id="longBreakLength" value="15" />
+                <label for="longBreakLength">Long Break Length (Minutes:Seconds):</label>
+                <input type="number" id="longBreakMinutes" value="15" min="0" max="59" />
+                <input type="number" id="longBreakSeconds" value="0" min="0" max="59" />
             </fieldset>
             <fieldset>
                 <label for="longBreakInterval">Long Break Interval:</label>
                 <input type="number" id="longBreakInterval" value="4" />
             </fieldset>
         </form>
-
+    
         <div class="theme-selector">
             <button id="lightModeBtn">Light Mode</button>
             <button id="darkModeBtn">Dark Mode</button>
             <button id="defaultModeBtn">Default Mode</button>
         </div>
-        
     </aside>
 
     
