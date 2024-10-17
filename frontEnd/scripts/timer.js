@@ -25,16 +25,17 @@ function startTimer() {
     isRunning = true;
 
     timer = setInterval(() => {
-        if (timeLeft <= 0) {
+        timeLeft--;
+        timeDisplay.textContent = formatTime(timeLeft);
+
+        if (timeLeft === 0) {
             clearInterval(timer);
             isRunning = false;
             sessionCount++;
             sessionCountDisplay.textContent = sessionCount;
-            alert("Time's up!"); // Alert when time is up
-            return;
+
+            nextSession();
         }
-        timeLeft--;
-        timeDisplay.textContent = formatTime(timeLeft);
     }, 1000);
 }
 
@@ -68,6 +69,7 @@ function getCustomDurations() {
     const pomodoroLength = parseInt(document.getElementById('pomodoroLength').value, 10) || 25; // Default to 25 if empty
     const shortBreakLength = parseInt(document.getElementById('breakLength').value, 10) || 5; // Default to 5 if empty
     const longBreakLength = parseInt(document.getElementById('longBreakLength').value, 10) || 15; // Default to 15 if empty
+    
 
     return {
         pomodoro: pomodoroLength,
@@ -76,5 +78,14 @@ function getCustomDurations() {
     };
 }
 
+function nextSession() {
+    if (sessionCount % 4 === 0) {
+        setTimer(getCustomDurations().longBreak);
+    } else {
+        setTimer(getCustomDurations().shortBreak);
+    }
+    startTimer();
+}
+
 // Expose functions to the global scope for use in index.js
-export { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations };
+export { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations, nextSession };
