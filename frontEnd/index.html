@@ -46,20 +46,28 @@
         <span class="taskCloseBtn" onclick="closeSidebar()">x</span>
         <h2>Tasks</h2>
         <ul id="taskList">
-            <li><input type="checkbox" /> Task 1</li>
-            <li><input type="checkbox" /> Task 2</li>
         </ul>
         <form id="taskForm">
             <label for="taskInput">Add a Task:</label>
             <input type="text" id="taskInput" placeholder="Add a task..." />
+            <button id="addTaskBtn" type="submit">Add Task</button> <!-- Ensure this is a submit button -->
         </form>
-        <div class="taskControls">
-            <button id="addTaskBtn" class="commonButton">Add Task</button>
-            <button id="deleteTaskBtn" class="commonButton">Delete Task</button>
-            <button id="moveUpTaskBtn" class="commonButton">Move Up Task</button>
-            <button id="moveDownTaskBtn" class="commonButton">Move Down Task</button>
-        </div>  
     </aside>
+
+    <!-- Add this in your HTML file -->
+    <template id="taskTemplate">
+        <li>
+            <input type="checkbox" />
+            <span class="taskText"></span>
+            <button class="deleteTaskBtn" aria-label="Delete Task">
+                <img src="\frontEnd\IMGS\trash-can-34.svg" alt="Delete Task" style="width: 1em; height: 2em; vertical-align: middle; fill: currentColor;" />
+            </button>
+
+            <button class="moveUpTaskBtn"><i class="fas fa-arrow-up"></i></button>
+            <button class="moveDownTaskBtn"><i class="fas fa-arrow-down"></i></button>
+        </li>
+    </template>
+
 
     <aside class="leftSidebar userSidebar" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
         <span class="userCloseBtn" onclick="closeSidebar()">x</span>
