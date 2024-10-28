@@ -10,6 +10,7 @@ let isPomodoro = true; // Track if the current session is a break or Pomodoro
 // Get elements from the DOM
 const timeDisplay = document.getElementById('time');
 const sessionCountDisplay = document.getElementById('sessionCount');
+const sessionMessage = document.getElementById('sessionMessage'); // New element
 
 // Function to format time in mm:ss
 function formatTime(seconds) {
@@ -43,9 +44,14 @@ function startTimer() {
 
 // Function to pause the timer
 function pauseTimer() {
-    if (!isRunning) return;
-    clearInterval(timer);
-    isRunning = false;
+    if(pauseBtn.textContent === 'Pause') {
+        clearInterval(timer);  // Stop the timer
+        isRunning = false;     // Set running flag to false
+        pauseBtn.textContent = 'Resume'; // Change button text to 'Resume'
+    } else {
+        startTimer();  // Resume the timer
+        pauseBtn.textContent = 'Pause'; // Change button text to 'Pause'
+    }
 }
 
 // Function to reset the timer
@@ -54,8 +60,7 @@ function resetTimer() {
     isRunning = false;      // Set running flag to false
     timeLeft = lastDuration;  // Reset the timeLeft to the original duration
     timeDisplay.textContent = formatTime(timeLeft);  // Display the reset time
-    // Optionally call setTimer here to ensure it's displayed correctly
-    setTimer(lastDuration);
+    sessionMessage.textContent = "Time to work."; // Reset message
 }
 
 // Function to set timer duration based on button clicked
@@ -96,13 +101,16 @@ function nextSession() {
         // If the current session was Pomodoro, switch to break
         if (sessionCount % customDurations.longBreakInterval === 0) {
             setTimer(customDurations.longBreak);  // Long break after X Pomodoro sessions
+            sessionMessage.textContent = "Get up and stretch and drink some water"; // Update message
         } else {
             setTimer(customDurations.shortBreak);  // Short break otherwise
+            sessionMessage.textContent = "Get up and stretch and drink some water"; // Update message
         }
         isPomodoro = false;  // Next session will be a break
     } else {
         // If the current session was a break, switch to Pomodoro
         setTimer(customDurations.pomodoro);  // Start new Pomodoro
+        sessionMessage.textContent = "Time to work."; // Update message for Pomodoro
         isPomodoro = true;  // Next session will be Pomodoro
     }
 

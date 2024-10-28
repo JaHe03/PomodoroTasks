@@ -15,6 +15,7 @@ const defaultModeBtn = document.getElementById('defaultModeBtn');
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('taskInput');
 const taskForm = document.getElementById('taskForm');
+const cuurrentSession = document.getElementById('currentSession');
 const deleteTaskBtn = document.getElementById('deleteTaskBtn');
 const moveUpTaskBtn = document.getElementById('moveUpTaskBtn');
 const moveDownTaskBtn = document.getElementById('moveDownTaskBtn');
@@ -53,3 +54,5 @@ taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
     addTask(taskList, taskInput);
 });
+
+cuurrentSession.addEventListener('click', nextSession);

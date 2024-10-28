@@ -17,8 +17,10 @@
             </p>
         </header>
 
+
         <!-- Timer display and controls -->
         <section class="timerContainer">
+            <h2 id="sessionMessage" aria-live="polite">Time to work!</h2>
             <div class="userSelectManualTime">
                 <button id="pomodoroBtn">Pomodoro</button>
                 <button id="shortBreakBtn">Short Break</button>
@@ -38,35 +40,50 @@
     </div>
 
     <!-- Open buttons for sidebars -->
-    <button class="taskOpenBtn" onclick="openTaskSidebar()">Open Task List</button>
     <button class="userOpenBtn" onclick="openUserSidebar()">Open Settings</button>
 
     <!-- Sidebars for task list and settings -->
-    <aside class="rightSidebar taskSidebar" aria-label="Task List Sidebar"> <!-- taskCont.css-->
-        <span class="taskCloseBtn" onclick="closeSidebar()">x</span>
+    <aside class="rightSidebar taskSidebar" aria-label="Task List Sidebar">
         <h2>Tasks</h2>
-        <ul id="taskList">
-        </ul>
+    
+        <!-- Task form should appear below the 'x' -->
         <form id="taskForm">
-            <label for="taskInput">Add a Task:</label>
-            <input type="text" id="taskInput" placeholder="Add a task..." />
-            <button id="addTaskBtn" type="submit">Add Task</button> <!-- Ensure this is a submit button -->
+            <textarea id="taskInput" placeholder="Add a task..."></textarea>
+            <button id="addTaskBtn" type="submit">Add Task</button>
         </form>
+        <ul id="taskList">
+            <!-- Task list goes here -->
+        </ul>
     </aside>
+    
+    
 
     <!-- Add this in your HTML file -->
     <template id="taskTemplate">
-        <li>
-            <input type="checkbox" />
-            <span class="taskText"></span>
-            <button class="deleteTaskBtn" aria-label="Delete Task">
-                <img src="\frontEnd\IMGS\trash-can-34.svg" alt="Delete Task" style="width: 1em; height: 2em; vertical-align: middle; fill: currentColor;" />
-            </button>
-
-            <button class="moveUpTaskBtn"><i class="fas fa-arrow-up"></i></button>
-            <button class="moveDownTaskBtn"><i class="fas fa-arrow-down"></i></button>
+        <li class="taskItem">
+            <div class="taskContent">
+                <input type="checkbox" />
+                <span class="taskText"></span>
+            </div>
+            <div class="taskButtons">
+                <button class="moveUpTaskBtn" aria-label="Move up">
+                    <img src="/frontEnd/IMGS/moveArrow.svg" alt="Move up" 
+                         style="width: 1.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden;" />
+                </button>
+    
+                <button class="moveDownTaskBtn" aria-label="Move down">
+                    <img src="/frontEnd/IMGS/moveArrow.svg" alt="Move down" 
+                         style="width: 1.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden; transform: rotate(180deg);" />
+                </button>
+    
+                <button class="deleteTaskBtn" aria-label="Delete Task">
+                    <img src="/frontEnd/IMGS/trash-can-34.svg" alt="Delete Task" 
+                         style="width: 1em; height: 2em; vertical-align: middle; fill: currentColor;" />
+                </button>
+            </div>
         </li>
     </template>
+    
 
 
     <aside class="leftSidebar userSidebar" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
