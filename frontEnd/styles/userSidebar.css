@@ -5,10 +5,16 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: var(--background-color);;
+    background-color: var(--background-color);
     overflow-x: hidden;
     padding-top: 60px;
     transition: width 0.5s ease;
+}
+
+.leftSidebar.closed {
+    width: 0;
+    padding: 0; /* Ensures no padding shows when closed */
+    display: none; /* Fully hides the sidebar */
 }
 
 .userCloseBtn {
