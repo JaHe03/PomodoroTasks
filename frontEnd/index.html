@@ -39,9 +39,6 @@
         </section>
     </div>
 
-    <!-- Open buttons for sidebars -->
-    <button class="userOpenBtn" onclick="openUserSidebar()">Open Settings</button>
-
     <!-- Sidebars for task list and settings -->
     <aside class="rightSidebar taskSidebar" aria-label="Task List Sidebar">
         <h2>Tasks</h2>
@@ -85,31 +82,34 @@
     </template>
     
 
-
-    <aside class="leftSidebar userSidebar" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
-        <span class="userCloseBtn" onclick="closeSidebar()">x</span>
+    <button id="settingsOpenBtn" class="userOpenBtn" onclick="openNav()">Open Settings</button>
+    <aside id="leftSidebar" class="leftSidebar userSidebar" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
+        <button id="userCloseBtn"class="userCloseBtn" onclick="closeNav()">x</button>
         <h2>Settings</h2>
         <form id="settingsForm">
             <fieldset>
-                <label for="pomodoroLength">Pomodoro Length (Minutes:Seconds):</label>
+                <label for="pomodoroMinutes">Pomodoro Length (Minutes):</label>
                 <input type="number" id="pomodoroMinutes" value="25" min="0" max="59" />
+                <label for="pomodoroSeconds">Seconds:</label>
                 <input type="number" id="pomodoroSeconds" value="0" min="0" max="59" />
             </fieldset>
             <fieldset>
-                <label for="breakLength">Break Length (Minutes:Seconds):</label>
+                <label for="breakMinutes">Break Length (Minutes):</label>
                 <input type="number" id="breakMinutes" value="5" min="0" max="59" />
+                <label for="breakSeconds">Seconds:</label>
                 <input type="number" id="breakSeconds" value="0" min="0" max="59" />
             </fieldset>
             <fieldset>
-                <label for="longBreakLength">Long Break Length (Minutes:Seconds):</label>
+                <label for="longBreakMinutes">Long Break Length (Minutes):</label>
                 <input type="number" id="longBreakMinutes" value="15" min="0" max="59" />
+                <label for="longBreakSeconds">Seconds:</label>
                 <input type="number" id="longBreakSeconds" value="0" min="0" max="59" />
             </fieldset>
             <fieldset>
                 <label for="longBreakInterval">Long Break Interval:</label>
                 <input type="number" id="longBreakInterval" value="4" />
             </fieldset>
-        </form>
+            
     
         <div class="theme-selector">
             <button id="lightModeBtn">Light Mode</button>
