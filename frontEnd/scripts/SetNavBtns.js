@@ -1,17 +1,34 @@
-function openNav() {
-    const sidebar = document.getElementById("leftSidebar");
-    sidebar.style.display = "block"; // Ensure display is block on open
+function openNavSettings() {
+    const sidebarSettings = document.getElementById("leftSidebar");
+    sidebarSettings.style.display = "block"; // Ensure display is block on open
     setTimeout(() => {
-        sidebar.classList.remove("closed");
+        sidebarSettings.classList.remove("closed");
     }, 10); // Slight delay for smooth transition
 }
 
-function closeNav() {
-    const sidebar = document.getElementById("leftSidebar");
-    sidebar.classList.add("closed");
+function closeNavSettings() {
+    const sidebarSettings = document.getElementById("leftSidebar");
+    sidebarSettings.classList.add("closed");
     setTimeout(() => {
-        sidebar.style.display = "none"; // Hide after transition
+        sidebarSettings.style.display = "none"; // Hide after transition
     }, 500); // Match this delay to CSS transition time
 }
 
-export { openNav, closeNav };
+
+function openNavTask() {
+    const sidebarTask = document.getElementById("rightSidebar");
+    sidebarTask.style.display = "block"; // Ensure display is block on open
+    setTimeout(() => {
+        sidebarTask.classList.remove("closed");
+    }, 10); // Slight delay for smooth transition
+}
+
+function closeNavTask() {
+    const sidebarTask = document.getElementById("rightSidebar");
+    sidebarTask.classList.add("closed");
+    setTimeout(() => {
+        sidebarTask.style.display = "none"; // Hide after transition
+    }, 500); // Match this delay to CSS transition time
+}
+
+export { openNavSettings, openNavTask, closeNavSettings, closeNavTask };
