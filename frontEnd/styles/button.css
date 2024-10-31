@@ -17,13 +17,11 @@ button {
   
   /* Specific styles for close/open buttons if needed */
   .userOpenBtn,
-  .userCloseBtn {
+  .userCloseBtn,
+  .taskOpenBtn,
+  .taskCloseBtn {
     background-color: var(--background-color); /* Define the background color for open buttons */
     color: var(--text-color); /* Text color for open buttons */
   }
   
-  .userOpenBtn:hover,
-  .userCloseBtn:hover {
-    background-color: var(--background-color);/* Define a hover color for open/close buttons */
-  }
   

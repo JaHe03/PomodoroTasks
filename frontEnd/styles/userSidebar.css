@@ -36,7 +36,6 @@
     background-color: var(--accent-color); /* Updated to use CSS variable */
     color: var(--text-color); /* Updated to use CSS variable */
     cursor: pointer;
-    
 }
 
 .userSidebar {

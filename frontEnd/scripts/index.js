@@ -2,7 +2,7 @@
 import { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations } from './timer.js';
 import { setTheme } from './themes.js';
 import { addTask } from './tasks.js';
-import { openNav, closeNav } from './SetNavBtns.js';
+import { openNavTask, closeNavTask, openNavSettings, closeNavSettings } from './SetNavBtns.js';
 
 
 // Get elements from the DOM
@@ -19,6 +19,8 @@ const taskInput = document.getElementById('taskInput');
 const taskForm = document.getElementById('taskForm');
 const settingsOpenBtn = document.getElementById('settingsOpenBtn'); // Open button
 const userCloseBtn = document.getElementById('userCloseBtn');
+const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
+const taskCloseBtn = document.getElementById('taskCloseBtn'); // Close button
 
 // Event listeners for buttons
 pomodoroBtn.addEventListener('click', () => {
@@ -54,5 +56,8 @@ taskForm.addEventListener('submit', (event) => {
     addTask(taskList, taskInput);
 });
 
-settingsOpenBtn.addEventListener('click', openNav);
-userCloseBtn.addEventListener('click', closeNav);
+settingsOpenBtn.addEventListener('click', openNavSettings);
+userCloseBtn.addEventListener('click', closeNavSettings);
+
+taskOpenBtn.addEventListener('click', openNavTask);
+taskCloseBtn.addEventListener('click', closeNavTask);
