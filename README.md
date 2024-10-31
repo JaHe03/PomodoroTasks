@@ -1,2 +1,2 @@
-# PomodoroJaryn
+# PomodoroTasks
  A Pomodoro Website 
