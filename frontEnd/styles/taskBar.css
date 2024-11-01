@@ -216,9 +216,6 @@ li button:hover {
     border: 2px solid var(--accent-color); /* Custom focus border */
 }
 
-
-
-
 @media (max-width: 600px) {
     .rightSidebar {
         width: 80%;
