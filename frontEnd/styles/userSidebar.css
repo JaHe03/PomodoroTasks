@@ -82,3 +82,9 @@ input[type="number"]:focus {
     border-color: var(--accent-color); /* Updated to use CSS variable */
     outline: solid 2px var(--accent-color); /* Updated to use CSS variable */
 }
+
+@media (max-width: 600px) {
+    .leftSidebar {
+        width: 80%;
+    }
+}
