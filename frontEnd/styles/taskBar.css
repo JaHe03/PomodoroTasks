@@ -218,6 +218,6 @@ li button:hover {
 
 @media (max-width: 600px) {
     .rightSidebar {
-        width: 80%;
+        width: 100%;
     }
 }

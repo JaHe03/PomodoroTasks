@@ -85,6 +85,6 @@ input[type="number"]:focus {
 
 @media (max-width: 600px) {
     .leftSidebar {
-        width: 80%;
+        width: 100%;
     }
 }
