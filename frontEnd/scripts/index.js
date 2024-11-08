@@ -3,6 +3,7 @@ import { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations } from
 import { setTheme } from './themes.js';
 import { addTask } from './tasks.js';
 import { openNavTask, closeNavTask, openNavSettings, closeNavSettings } from './SetNavBtns.js';
+import { loginFetch, signUpFetch } from './fetch.js';
 
 
 // Get elements from the DOM
@@ -21,6 +22,8 @@ const settingsOpenBtn = document.getElementById('settingsOpenBtn'); // Open butt
 const userCloseBtn = document.getElementById('userCloseBtn');
 const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
 const taskCloseBtn = document.getElementById('taskCloseBtn'); // Close button
+const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
 
 // Event listeners for buttons
 pomodoroBtn.addEventListener('click', () => {
@@ -61,3 +64,12 @@ userCloseBtn.addEventListener('click', closeNavSettings);
 
 taskOpenBtn.addEventListener('click', openNavTask);
 taskCloseBtn.addEventListener('click', closeNavTask);
+
+loginBtn.addEventListener('click', async () => {
+    await loginFetch();
+});
+
+signupBtn.addEventListener('click', async () => {
+    await signUpFetch();
+});
+
