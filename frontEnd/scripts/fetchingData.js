@@ -4,11 +4,11 @@ async function loginFetch() {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('/local/login', { 
+        const response = await fetch('/login/', { 
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-CSRF-TOKEN':'{{csrf_token}}'
+                'X-CSRF-TOKEN': '{{ csrf_token }}'  // CSRF token
             },
             body: JSON.stringify({ email, password })
         });
@@ -33,13 +33,14 @@ async function signupPost() {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-CSRF-TOKEN':'{{csrf_token}}'
-    },
+                'X-CSRF-TOKEN': '{{ csrf_token }}'  // CSRF token
+        },
         body: JSON.stringify({ email, password })
-    });
+        });
         const data = await response.json();
         if (data.success) {
-            console.log('Signup successful');
+            console.log('signup successful');
+            window.location.href = '/login/';
         }
         else {
             console.log('Signup failed');
