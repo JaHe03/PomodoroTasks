@@ -2,10 +2,7 @@ function getCSRFToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 }
 
-async function loginFetch() {
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+async function loginFetch(email, password) {
 
     try {
         const response = await fetch('/local/login/', { 
@@ -28,10 +25,7 @@ async function loginFetch() {
     }
 }
 
-async function signUpFetch() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
+async function signUpFetch(email, password) {
     try {
         const response = await fetch('/local/signup', { 
             method: 'POST',
