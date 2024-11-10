@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up - PomodoroTasks</title>
+    <title>Login - PomodoroTasks</title>
     <link rel="icon" href="frontEnd/IMGS/PomodoroTaskIcon.png" type="image/png" />
-
-    <link rel="stylesheet" href="frontEnd/styles/signup.css" />
+    <link rel="stylesheet" href="frontEnd/styles/login.css" />
 </head>
 <body>
-    <div class="signUp-container">
+    <div class="login-container">
         <a href="index.html" class="back-btn">
-            <img src="frontEnd/IMGS/PomodoroTaskIcon.png" alt="PomodoroTasks Logo" class="logo" >
+            <img src="frontEnd\IMGS\PomodoroTaskIcon.png" alt="PomodoroTasks Logo" class="logo">
             <h1>PomodoroTasks</h1>
         </a>
-        <h2 class="title">Sign Up</h2>
-        <form class="signUp-form">
+        <h2 class="title">Login</h2>
+        <form class="login-form" method="POST">
+            {% csrf_token %}
             <label for="email">EMAIL</label>
             <input type="email" id="email" placeholder="example@mail.com" required />
 
             <label for="password">PASSWORD</label>
             <input type="password" id="password" placeholder="Password" required />
-            <label for="confirmPassword">CONFIRM PASSWORD</label>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
-            <button type="submit" class="signUp-btn">Sign Up</button>
+            
+            <button type="submit" class="login-btn">Log in</button>
         </form>
         
-        <p class="Login-link">
-            Have an account? <a href="login.html">Login</a>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+
+        <p class="signup-link">
+            Do not have an account? <a href="signUp.html">Create account</a>
         </p>
     </div>
 </body>

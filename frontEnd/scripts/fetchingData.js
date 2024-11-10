@@ -4,11 +4,11 @@ async function loginFetch() {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('/login/', { 
+        const response = await fetch('/local/login/', { 
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token }}'  // CSRF token
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'  // CSRF token
             },
             body: JSON.stringify({ email, password })
         });
@@ -32,8 +32,8 @@ async function signupPost() {
         const response = await fetch('/local/signup', { 
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token }}'  // CSRF token
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'  // CSRF token
         },
         body: JSON.stringify({ email, password })
         });
