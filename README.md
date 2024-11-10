@@ -6,3 +6,5 @@
 
 Login in or Sign up to save settings and to STORE TASKS!
 
+MORE FEATURES COMING SOON!!!
+
