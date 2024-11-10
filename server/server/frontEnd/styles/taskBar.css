@@ -1,0 +1,223 @@
+.rightSidebar {
+    height: 100%;
+    width: 600px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: var(--background-color);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: width 0.5s ease;
+}
+
+.rightSidebar.closed {
+    width: 0;
+    padding: 0; /* Ensures no padding shows when closed */
+    display: none; /* Fully hides the sidebar */
+}
+
+.taskSidebar h2 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin: 10px 10px;
+}
+
+.taskCloseBtn {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 15px;
+    color: var(--text-color); /* Updated to use CSS variable */
+    cursor: pointer;
+    z-index: 2;
+}
+.taskOpenBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    padding: 10px 15px;
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    color: var(--text-color); /* Updated to use CSS variable */
+    cursor: pointer;
+}
+
+.taskSidebar {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 1px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
+    
+}
+
+#taskForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    margin-top: 20px; /* Ensure the form is pushed down from the header */
+}
+
+#addTaskBtn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addTaskBtn:hover {
+    background-color: #0056b3; /* Specify a lighter or darker color directly */
+}
+
+.taskSidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.taskSidebar li {
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* .taskSidebar li:hover {
+    background-color: var(--text-color); 
+    color: var(--accent-color); 
+    cursor: pointer;
+} */
+
+.taskSidebar input[type="text"] {
+    position: fixed;
+    top: 75px;
+    width: 100%;
+    border: none;
+    border-radius: 100px;
+    bottom: 10px;
+    background-color: var(--accent-color); /* Updated to use CSS variable */
+    color: var(--text-color); /* Updated to use CSS variable */
+    height: 50px;
+    text-align: left;
+    font-size: 1rem;
+    padding: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+#taskList {
+    flex-grow: 1;
+    overflow-y: auto;  
+    overflow-x: hidden; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Style buttons inside task items */
+li button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+li button:hover {
+    background-color: var(--hover-color);
+}
+
+/* Styling for task items */
+.taskItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%; /* Make it flexible */
+    max-width: 100%; /* Ensure it doesn't exceed the sidebar width */
+    padding: 10px;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.taskContent {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between checkbox and text */
+}
+
+.taskContent input[type="text"] {
+    width: 100%; /* Ensure input takes full width */
+    overflow: hidden; /* Hide overflowed content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Display ellipsis for overflowed content */
+}
+
+
+.taskButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto; /* Ensures buttons stick to the bottom */
+}
+
+.taskButtons button {
+    margin-left: 10px;
+    padding: 1px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.taskButtons button:hover {
+    background-color: var(--hover-color);
+}
+
+.taskContent input[type="checkbox"] {
+    margin-right: 2px; /* Adds space to the right of the checkbox */
+}
+
+.taskContent .taskText {
+    margin-left: 2px; /* Adds space to the left of the task text */
+}
+
+.taskText {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+#taskInput {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    resize: vertical;
+}
+
+#taskInput:focus {
+    outline: none; /* Remove default focus outline */
+    border: 2px solid var(--accent-color); /* Custom focus border */
+}
+
+@media (max-width: 600px) {
+    .rightSidebar {
+        width: 100%;
+    }
+}
