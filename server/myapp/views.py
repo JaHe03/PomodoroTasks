@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.hashers import make_password
 from .models import UserAccount
 
@@ -22,13 +23,21 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        try:
-            user = UserAccount.objects.get(email=email)
-            if user.check_password(password):  # Check the hashed password
-                return redirect('index')  # Redirect to a home page or dashboard
-        except UserAccount.DoesNotExist:
-            pass
+
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            auth_login(request, user)  # Log the user in, creating a session
+            print("User is logged in:", request.user.is_authenticated)
+            return redirect('index')  # Redirect to index or home page
+        else:
+            # If authentication fails, show an error message
+            return render(request, 'login.html', {'error': 'Invalid email or password'})
+    
     return render(request, 'login.html')
 
 def index(request):
+    return render(request, 'index.html')
+
+def logout(request):
+    auth_logout(request)  # Log the user out
     return render(request, 'index.html')

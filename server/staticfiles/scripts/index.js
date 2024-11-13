@@ -4,6 +4,7 @@ import { setTheme } from './themes.js';
 import { addTask } from './tasks.js';
 import { openNavTask, closeNavTask, openNavSettings, closeNavSettings } from './SetNavBtns.js';
 import { loginFetch, signUpFetch } from './fetch.js';
+import { confirmLogout } from './logout.js';
 
 
 // Get elements from the DOM
@@ -24,6 +25,7 @@ const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
 const taskCloseBtn = document.getElementById('taskCloseBtn'); // Close button
 const loginBtn = document.getElementById('loginBtn');
 const signupBtn = document.getElementById('signupBtn');
+const logoutBtn = document.getElementById('logoutBtn');
 
 // Event listeners for buttons
 pomodoroBtn.addEventListener('click', () => {
@@ -73,5 +75,4 @@ signupBtn.addEventListener('click', () => {
     window.location.href = "/signup";  // Redirect to the signup page
 });
 
-
-
+logoutBtn.addEventListener('click', confirmLogout);

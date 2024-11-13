@@ -93,8 +93,15 @@
         <form id="settingsForm">
             <div class="authBox">
                 <div class="authBtns">
+                    {% if user.is_authenticated %}
+                        <!-- If the user is logged in, show Save and Log Out buttons -->
+                        <button id="saveBtn" type="button">Save</button>
+                        <button id="logoutBtn" type="button">Log Out</button>
+                    {% else %}
+                        <!-- If the user is not logged in, show Login and Sign Up buttons -->
                         <button id="loginBtn" type="button">Login</button>
                         <button id="signupBtn" type="button">Sign Up</button>
+                    {% endif %}
                 </div>          
             </div>  
             <fieldset>
