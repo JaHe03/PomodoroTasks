@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
 
 def signup(request):
@@ -15,20 +16,24 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-
-
-
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('email')  # Get the username field
-        password = request.POST.get('password')  # Get the password field
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)  # Log the user in
-            return redirect('index')  # Redirect to the home page
-        else:
-            # If the user doesn't exist or password is wrong
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Get the user by email and check credentials
+        try:
+            print("email", email, "password", password)
+            username = User.objects.get(email=email).username  # Lookup username by email
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+        except User.DoesNotExist:
+            pass
+
+        # If credentials are invalid or user doesn't exist
+        return render(request, 'login.html', {'error': 'Invalid credentials'})
     return render(request, 'login.html')
 
 def custom_logout(request):
