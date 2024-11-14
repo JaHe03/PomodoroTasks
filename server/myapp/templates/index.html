@@ -90,13 +90,16 @@
     <aside id="leftSidebar" class="leftSidebar userSidebar closed" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
         <button id="userCloseBtn" class="userCloseBtn">x</button>
         <h2>Settings</h2>
+        <form id="logoutForm" method="POST" action="{% url 'logout' %}" style="display:none;">
+            {% csrf_token %}
+        </form>
         <form id="settingsForm">
             <div class="authBox">
                 <div class="authBtns">
                     {% if user.is_authenticated %}
                         <!-- If the user is logged in, show Save and Log Out buttons -->
                         <button id="saveBtn" type="button">Save</button>
-                        <button id="logoutBtn" type="button">Log Out</button>
+                        <button id="logoutBtn" type="button" class="logout-btn">Logout</button>
                     {% else %}
                         <!-- If the user is not logged in, show Login and Sign Up buttons -->
                         <button id="loginBtn" type="button">Login</button>

@@ -23,16 +23,14 @@ const settingsOpenBtn = document.getElementById('settingsOpenBtn'); // Open butt
 const userCloseBtn = document.getElementById('userCloseBtn');
 const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
 const taskCloseBtn = document.getElementById('taskCloseBtn'); // Close button
-const loginBtn = document.getElementById('loginBtn');
-const signupBtn = document.getElementById('signupBtn');
-const logoutBtn = document.getElementById('logoutBtn');
 
 // Event listeners for buttons
 pomodoroBtn.addEventListener('click', () => {
     const durations = getCustomDurations();
     setTimer(durations.pomodoro); // Use custom or default Pomodoro length
     startTimer(); // Start the timer
-});
+    }
+);
 
 shortBreakBtn.addEventListener('click', () => {
     const durations = getCustomDurations();
@@ -67,12 +65,47 @@ userCloseBtn.addEventListener('click', closeNavSettings);
 taskOpenBtn.addEventListener('click', openNavTask);
 taskCloseBtn.addEventListener('click', closeNavTask);
 
-loginBtn.addEventListener('click', () => {
-    window.location.href = "/login";  // Redirect to the login page
-});
+document.addEventListener('DOMContentLoaded', function () {
+    // Your code here
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const saveBtn = document.getElementById('saveBtn');
 
-signupBtn.addEventListener('click', () => {
-    window.location.href = "/signup";  // Redirect to the signup page
-});
+    if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+            window.location.href = "/login";
+        });
+    }
 
-logoutBtn.addEventListener('click', confirmLogout);
+    if (signupBtn) {
+        signupBtn.addEventListener('click', () => {
+            window.location.href = "/signup";
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent the default behavior of the button
+            
+            // Ensure the logout form exists
+            const logoutForm = document.getElementById("logoutForm");
+            
+            // Check if logoutForm is not null
+            if (logoutForm) {
+                // Submit the form using JavaScript
+                logoutForm.submit();
+            } else {
+                console.error('Logout form not found');
+            }
+        });
+    }
+
+    if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+            // Add functionality for the 'save' button, e.g. saving data or some action
+            console.log('Save button clicked!');
+            // Example: Save data, show a message, etc.
+        });
+    }
+});
