@@ -1,12 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class UserPreference(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="preferences")
-    pomodoro_duration = models.IntegerField(default=25)  # in minutes
-    long_duration = models.IntegerField(default=15)  # in minutes
-    short_duration = models.IntegerField(default=5)  # in minutes
-    theme = models.CharField(max_length=50, default="light")  # e.g., "light" or "dark"
+class PomodoroPreference(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pomodoro_minutes = models.PositiveIntegerField(default=25)
+    pomodoro_seconds = models.PositiveIntegerField(default=0)
+    short_break_minutes = models.PositiveIntegerField(default=5)
+    short_break_seconds = models.PositiveIntegerField(default=0)
+    long_break_minutes = models.PositiveIntegerField(default=15)
+    long_break_seconds = models.PositiveIntegerField(default=0)
+    long_break_interval = models.PositiveIntegerField(default=4)
+    
+    THEME_CHOICES = [
+        ('light', 'Light'),
+        ('dark', 'Dark'),
+        ('default', 'Default'),
+    ]
+    theme = models.CharField(max_length=50, choices=THEME_CHOICES, default='default') 
 
     def __str__(self):
         return f"{self.user.username}'s Preferences"
+    
+

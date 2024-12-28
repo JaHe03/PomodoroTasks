@@ -1,10 +1,9 @@
 // index.js
 import { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations } from './timer.js';
-import { setTheme } from './themes.js';
 import { addTask } from './tasks.js';
+import { setTheme } from './themes.js';
 import { openNavTask, closeNavTask, openNavSettings, closeNavSettings } from './SetNavBtns.js';
-import { loginFetch, signUpFetch } from './fetch.js';
-import { confirmLogout } from './logout.js';
+
 
 
 // Get elements from the DOM
@@ -13,9 +12,6 @@ const shortBreakBtn = document.getElementById('shortBreakBtn');
 const longBreakBtn = document.getElementById('longBreakBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const resetBtn = document.getElementById('resetBtn');
-const lightModeBtn = document.getElementById('lightModeBtn');
-const darkModeBtn = document.getElementById('darkModeBtn');
-const defaultModeBtn = document.getElementById('defaultModeBtn');
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('taskInput');
 const taskForm = document.getElementById('taskForm');
@@ -23,6 +19,22 @@ const settingsOpenBtn = document.getElementById('settingsOpenBtn'); // Open butt
 const userCloseBtn = document.getElementById('userCloseBtn');
 const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
 const taskCloseBtn = document.getElementById('taskCloseBtn'); // Close button
+const lightModeBtn = document.getElementById('lightModeBtn');
+const darkModeBtn = document.getElementById('darkModeBtn');
+const defaultModeBtn = document.getElementById('defaultModeBtn');
+
+// Event listeners for theme buttons
+lightModeBtn.addEventListener('click', () => {
+    setTheme('light');
+});
+
+darkModeBtn.addEventListener('click', () => {
+    setTheme('dark');
+});
+
+defaultModeBtn.addEventListener('click', () => {
+    setTheme('default');
+});
 
 // Event listeners for buttons
 pomodoroBtn.addEventListener('click', () => {
@@ -49,10 +61,6 @@ resetBtn.addEventListener('click', resetTimer);
 
 // Initialize the display
 document.getElementById('time').textContent = '25:00'; // Initial time display
-
-lightModeBtn.addEventListener('click', () => setTheme('light'));
-darkModeBtn.addEventListener('click', () => setTheme('dark'));
-defaultModeBtn.addEventListener('click', () => setTheme('default'));
 
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -98,14 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 console.error('Logout form not found');
             }
-        });
-    }
-
-    if (saveBtn) {
-        saveBtn.addEventListener('click', () => {
-            // Add functionality for the 'save' button, e.g. saving data or some action
-            console.log('Save button clicked!');
-            // Example: Save data, show a message, etc.
         });
     }
 });
