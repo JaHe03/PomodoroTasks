@@ -1,7 +1,6 @@
 // index.js
 import { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations } from './timer.js';
 import { addTask } from './tasks.js';
-import { setTheme } from './themes.js';
 import { openNavTask, closeNavTask, openNavSettings, closeNavSettings } from './SetNavBtns.js';
 
 
@@ -19,22 +18,7 @@ const settingsOpenBtn = document.getElementById('settingsOpenBtn'); // Open butt
 const userCloseBtn = document.getElementById('userCloseBtn');
 const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
 const taskCloseBtn = document.getElementById('taskCloseBtn'); // Close button
-const lightModeBtn = document.getElementById('lightModeBtn');
-const darkModeBtn = document.getElementById('darkModeBtn');
-const defaultModeBtn = document.getElementById('defaultModeBtn');
 
-// Event listeners for theme buttons
-lightModeBtn.addEventListener('click', () => {
-    setTheme('light');
-});
-
-darkModeBtn.addEventListener('click', () => {
-    setTheme('dark');
-});
-
-defaultModeBtn.addEventListener('click', () => {
-    setTheme('default');
-});
 
 // Event listeners for buttons
 pomodoroBtn.addEventListener('click', () => {

@@ -1,3 +1,5 @@
+import { setTheme } from './themes.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch CSRF token from meta tag
     const getCsrfToken = () => {
@@ -7,23 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const csrfToken = getCsrfToken();
 
-    // Event listeners for theme buttons
+    // Event listener for theme dropdown
     let selectedTheme = 'default';
-
-    document.getElementById('lightModeBtn').addEventListener('click', () => {
-        selectedTheme = 'light';
+    const themeDropdown = document.getElementById('themeDropdown');
+    
+    themeDropdown.addEventListener('change', (event) => {
+        selectedTheme = event.target.value;
+        setTheme(selectedTheme); // Apply the selected theme
     });
 
-    document.getElementById('darkModeBtn').addEventListener('click', () => {
-        selectedTheme = 'dark';
-    });
+    // Save preferences on clicking "Save" button
 
-    document.getElementById('defaultModeBtn').addEventListener('click', () => {
-        selectedTheme = 'default';
-    });
-
-
-    document.getElementById('saveBtn').addEventListener('click', async () => {
+    const savebtn = document.getElementById('saveBtn')
+    if (savebtn) {
+        savebtn.addEventListener('click', async () => {
         const pomodoroMinutes = document.getElementById('pomodoroMinutes').value || 25;
         const pomodoroSeconds = document.getElementById('pomodoroSeconds').value || 0;
 
@@ -35,50 +34,64 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const longBreakInterval = document.getElementById('longBreakInterval').value || 4;
 
-        const response = await fetch('/pomodoro-preferences/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
-            },
-            body: JSON.stringify({
-                pomodoro_minutes: pomodoroMinutes,
-                pomodoro_seconds: pomodoroSeconds,
-                short_break_minutes: breakMinutes,
-                short_break_seconds: breakSeconds,
-                long_break_minutes: longBreakMinutes,
-                long_break_seconds: longBreakSeconds,
-                long_break_interval: longBreakInterval,
-                theme: selectedTheme
-            }),
-        });
+        try {
+            const response = await fetch('/pomodoro-preferences/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({
+                    pomodoro_minutes: pomodoroMinutes,
+                    pomodoro_seconds: pomodoroSeconds,
+                    short_break_minutes: breakMinutes,
+                    short_break_seconds: breakSeconds,
+                    long_break_minutes: longBreakMinutes,
+                    long_break_seconds: longBreakSeconds,
+                    long_break_interval: longBreakInterval,
+                    theme: selectedTheme
+                }),
+            });
 
-        if (response.ok) {
-            alert('Preferences saved successfully!');
-        } else {
-            const error = await response.json();
-            alert(`Failed to save preferences: ${error.detail || 'Unknown error'}`);
+            if (response.ok) {
+                alert('Preferences saved successfully!');
+            } else {
+                const error = await response.json().catch(() => ({}));
+                alert(`Failed to save preferences: ${error.detail || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Error saving preferences:', error);
+            alert('An unexpected error occurred while saving preferences.');
         }
     });
-    
+
+    // Load user preferences on page load
     async function loadUserPreferences() {
-        const response = await fetch('/get-user-preferences/');
-        if (response.ok) {
-            const preferences = await response.json();
-            document.getElementById('pomodoroMinutes').value = preferences.pomodoro_minutes || 25;
-            document.getElementById('pomodoroSeconds').value = preferences.pomodoro_seconds || 0;
-            document.getElementById('breakMinutes').value = preferences.short_break_minutes || 5;
-            document.getElementById('breakSeconds').value = preferences.short_break_seconds || 0;
-            document.getElementById('longBreakMinutes').value = preferences.long_break_minutes || 15;
-            document.getElementById('longBreakSeconds').value = preferences.long_break_seconds || 0;
-            document.getElementById('longBreakInterval').value = preferences.long_break_interval || 4;
-            // Set theme
-            document.body.className = preferences.theme; // Assuming you have CSS classes for themes
-        } else {
-            console.error('Failed to load user preferences');
+        try {
+            const response = await fetch('/get-user-preferences/');
+            if (response.ok) {
+                const preferences = await response.json();
+                document.getElementById('pomodoroMinutes').value = preferences.pomodoro_minutes || 25;
+                document.getElementById('pomodoroSeconds').value = preferences.pomodoro_seconds || 0;
+                document.getElementById('breakMinutes').value = preferences.short_break_minutes || 5;
+                document.getElementById('breakSeconds').value = preferences.short_break_seconds || 0;
+                document.getElementById('longBreakMinutes').value = preferences.long_break_minutes || 15;
+                document.getElementById('longBreakSeconds').value = preferences.long_break_seconds || 0;
+                document.getElementById('longBreakInterval').value = preferences.long_break_interval || 4;
+
+                // Set the theme in the dropdown and apply it
+                themeDropdown.value = preferences.theme || 'default';
+                setTheme(preferences.theme || 'default');
+            } else {
+                console.error('Failed to load user preferences');
+            }
+        } catch (error) {
+            console.error('Error loading user preferences:', error);
         }
     }
 
-    // Call this function to load preferences when the page loads
+    // Call the function to load preferences on page load
     loadUserPreferences();
+    }
 });
+
