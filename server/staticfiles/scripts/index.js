@@ -1,8 +1,6 @@
 // index.js
 import { startTimer, pauseTimer, resetTimer, setTimer, getCustomDurations } from './timer.js';
-import { addTask } from './tasks.js';
 import { openNavTask, closeNavTask, openNavSettings, closeNavSettings } from './SetNavBtns.js';
-
 
 
 // Get elements from the DOM
@@ -11,9 +9,6 @@ const shortBreakBtn = document.getElementById('shortBreakBtn');
 const longBreakBtn = document.getElementById('longBreakBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const resetBtn = document.getElementById('resetBtn');
-const taskList = document.getElementById('taskList');
-const taskInput = document.getElementById('taskInput');
-const taskForm = document.getElementById('taskForm');
 const settingsOpenBtn = document.getElementById('settingsOpenBtn'); // Open button
 const userCloseBtn = document.getElementById('userCloseBtn');
 const taskOpenBtn = document.getElementById('taskOpenBtn'); // Open button
@@ -46,11 +41,6 @@ resetBtn.addEventListener('click', resetTimer);
 // Initialize the display
 document.getElementById('time').textContent = '25:00'; // Initial time display
 
-taskForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    addTask(taskList, taskInput);
-});
-
 settingsOpenBtn.addEventListener('click', openNavSettings);
 userCloseBtn.addEventListener('click', closeNavSettings);
 
@@ -59,10 +49,10 @@ taskCloseBtn.addEventListener('click', closeNavTask);
 
 document.addEventListener('DOMContentLoaded', function () {
     // Your code here
+
     const loginBtn = document.getElementById('loginBtn');
     const signupBtn = document.getElementById('signupBtn');
     const logoutBtn = document.getElementById('logoutBtn');
-    const saveBtn = document.getElementById('saveBtn');
 
     if (loginBtn) {
         loginBtn.addEventListener('click', () => {

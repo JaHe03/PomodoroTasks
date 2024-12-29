@@ -1,30 +1,26 @@
-// Function to create a new task element using the template
 function createTaskElement(taskText) {
-    // Get the task template from the HTML file
     const template = document.getElementById('taskTemplate');
-    
-    // Clone the template's content to create a new task
     const taskItem = template.content.cloneNode(true);
-    
-    // Set the task text
+
     const taskSpan = taskItem.querySelector('.taskText');
     taskSpan.textContent = taskText;
-    
-    // Attach event listeners to buttons within the cloned template
+
     const deleteBtn = taskItem.querySelector('.deleteTaskBtn');
     const moveUpBtn = taskItem.querySelector('.moveUpTaskBtn');
     const moveDownBtn = taskItem.querySelector('.moveDownTaskBtn');
 
     deleteBtn.addEventListener('click', () => {
         const li = deleteBtn.closest('li');
-        li.remove(); // Remove the task element
+        li.remove();
+        saveTasksToLocalStorage();
     });
 
     moveUpBtn.addEventListener('click', () => {
         const li = moveUpBtn.closest('li');
         const prevTask = li.previousElementSibling;
         if (prevTask) {
-            li.parentNode.insertBefore(li, prevTask); // Move task up
+            li.parentNode.insertBefore(li, prevTask);
+            saveTasksToLocalStorage();
         }
     });
 
@@ -32,27 +28,56 @@ function createTaskElement(taskText) {
         const li = moveDownBtn.closest('li');
         const nextTask = li.nextElementSibling;
         if (nextTask) {
-            li.parentNode.insertBefore(nextTask, li); // Move task down
+            li.parentNode.insertBefore(nextTask, li);
+            saveTasksToLocalStorage();
         }
     });
 
-    return taskItem; // Return the cloned task element
+    return taskItem;
 }
 
-// Function to add a new task
-function addTask(taskList, taskInput) {
-    const taskText = taskInput.value.trim(); // Get the input value
+function saveTasksToLocalStorage() {
+    const tasks = [];
+    document.querySelectorAll('.taskText').forEach(taskText => {
+        tasks.push(taskText.textContent);
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
-    if (taskText !== '') {
-        // Create a task element using the template
+function loadTasksFromLocalStorage() {
+    const taskList = document.getElementById('taskList');
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(taskText => {
         const taskItem = createTaskElement(taskText);
-
-        // Append the task element to the task list
         taskList.appendChild(taskItem);
+    });
+}
 
-        // Clear the input field after adding the task
-        taskInput.value = '';
+function addTask(taskInput) {
+    const taskText = taskInput.value.trim();
+    if (taskText) {
+        const taskList = document.getElementById('taskList');
+        const taskItem = createTaskElement(taskText);
+        taskList.appendChild(taskItem);
+        saveTasksToLocalStorage();
+        taskInput.value = ''; // Clear the input field
     }
 }
 
-export { addTask };
+// Initialization function to attach event listener
+function initializeTaskForm() {
+    const taskForm = document.getElementById('taskForm');
+    const taskInput = document.getElementById('taskInput');
+    if (taskForm && taskInput) {
+        taskForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission behavior
+            addTask(taskInput);
+        });
+    }
+}
+
+// Call the functions immediately when the script is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadTasksFromLocalStorage();
+    initializeTaskForm();
+});
