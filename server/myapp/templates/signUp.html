@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - PomodoroTasks</title>
+    <link rel="icon" href="{% static 'IMGS/PomodoroTaskIcon.png' %}" type="image/png" />
+
+    <link rel="stylesheet" href="{% static 'styles/signup.css' %}" />
+</head>
+<body>
+    <div class="signUp-container">
+        <a href="{% url 'index' %}" class="back-btn">
+            <img src="{% static 'IMGS/PomodoroTaskIcon.png' %}"  alt="PomodoroTasks Logo" class="logo" >
+            <h1>PomodoroTasks</h1>
+        </a>
+        <h2 class="title">Sign Up</h2>
+        <form class="signUp-form" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="signUp-btn">Sign Up</button>
+        </form>
+        
+        <p class="Login-link">
+            Have an account? <a href="{% url 'login' %}">Login</a>
+        </p>
+    </div>
+</body>
+</html>

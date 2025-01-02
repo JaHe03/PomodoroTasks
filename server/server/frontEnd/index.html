@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>PomodoroTasks</title>
+    <link rel="icon" href="{% static 'IMGS/PomodoroTaskIcon.png' %}" type="image/png" />
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" /> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="pomodoroContainer"> <!--everything in this div. pomodoroCont.css-->
+        <header>
+            <h1>PomodoroTasks</h1>
+            <p>
+                The Pomodoro technique is a time management method where you set a specific amount of time to work on a task. 
+                After the time is up, you take a short break! You repeat this process for a certain number of cycles, 
+                followed by a longer break.
+            </p>
+        </header>
+        <!-- Timer display and controls -->
+        <section class="timerContainer">
+            <h2 id="sessionMessage" aria-live="polite">Time to work!</h2>
+            <div class="userSelectManualTime">
+                <button id="pomodoroBtn">Pomodoro</button>
+                <button id="shortBreakBtn">Short Break</button>
+                <button id="longBreakBtn">Long Break</button>
+            </div>
+            <h1 id="time" aria-live="polite">25:00</h1>
+            <div class="controls">
+                <button id="pauseBtn">Pause</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </section>
+        
+        <!-- Completed sessions count -->
+        <section class="sessionInfo">
+            <h2>Sessions Completed: <span id="sessionCount">0</span></h2>
+        </section>
+    </div>
+
+    <!-- Sidebars for task list and settings -->
+    <button id="taskOpenBtn" class="taskOpenBtn">Open Tasks</button>
+    <aside id="rightSidebar" class="rightSidebar taskSidebar closed" aria-label="Task List Sidebar">
+        <button id="taskCloseBtn" class="taskCloseBtn">x</button>
+        <h2>Tasks</h2>
+    
+        <!-- Task form should appear below the 'x' -->
+        <form id="taskForm">
+            <textarea id="taskInput" placeholder="Add a task..."></textarea>
+            <button id="addTaskBtn" type="submit">Add Task</button>
+        </form>
+        <ul id="taskList">
+            <!-- Task list goes here -->
+        </ul>
+    </aside>
+    
+    
+
+    <!-- Add this in your HTML file -->
+    <template id="taskTemplate">
+        <li class="taskItem">
+            <div class="taskContent">
+                <input type="checkbox" />
+                <span class="taskText"></span>
+            </div>
+            <div class="taskButtons">
+                <button class="moveUpTaskBtn" aria-label="Move up">
+                    <img src="{% static 'IMGS/moveArrow.svg' %}" alt="Move up" 
+                         style="width: 1.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden;" />
+                </button>
+    
+                <button class="moveDownTaskBtn" aria-label="Move down">
+                    <img src="{% static 'IMGS/moveArrow.svg' %}" alt="Move down" 
+                         style="width: 1.5em; height: 1.5em; vertical-align: middle; fill: currentColor; overflow: hidden; transform: rotate(180deg);" />
+                </button>
+    
+                <button class="deleteTaskBtn" aria-label="Delete Task">
+                    <img src="{% static 'IMGS/trash-can-34.svg' %}" alt="Delete Task" 
+                         style="width: 1em; height: 2em; vertical-align: middle; fill: currentColor;" />
+                </button>
+            </div>
+        </li>
+    </template>
+    
+
+    <button id="settingsOpenBtn" class="userOpenBtn">Open Settings</button>
+    <aside id="leftSidebar" class="leftSidebar userSidebar closed" aria-label="Settings Sidebar"> <!-- userSidebar.css-->
+        <button id="userCloseBtn" class="userCloseBtn">x</button>
+        <h2>Settings</h2>
+        <form id="settingsForm">
+            <div class="authBox">
+                <div class="authBtns">
+                        <button id="loginBtn" type="button">Login</button>
+                        <button id="signupBtn" type="button">Sign Up</button>
+                </div>          
+            </div>  
+            <fieldset>
+                <label for="pomodoroMinutes">Pomodoro Length (Minutes):</label>
+                <input type="number" id="pomodoroMinutes" value="25" min="0" max="59" />
+                <label for="pomodoroSeconds">Seconds:</label>
+                <input type="number" id="pomodoroSeconds" value="0" min="0" max="59" />
+            </fieldset>
+            <fieldset>
+                <label for="breakMinutes">Break Length (Minutes):</label>
+                <input type="number" id="breakMinutes" value="5" min="0" max="59" />
+                <label for="breakSeconds">Seconds:</label>
+                <input type="number" id="breakSeconds" value="0" min="0" max="59" />
+            </fieldset>
+            <fieldset>
+                <label for="longBreakMinutes">Long Break Length (Minutes):</label>
+                <input type="number" id="longBreakMinutes" value="15" min="0" max="59" />
+                <label for="longBreakSeconds">Seconds:</label>
+                <input type="number" id="longBreakSeconds" value="0" min="0" max="59" />
+            </fieldset>
+            <fieldset>
+                <label for="longBreakInterval">Long Break Interval:</label>
+                <input type="number" id="longBreakInterval" value="4" />
+            </fieldset>
+        
+
+        <div class="theme-selector">
+            <button id="lightModeBtn" type="button">Light Mode</button>
+            <button id="darkModeBtn" type="button">Dark Mode</button>
+            <button id="defaultModeBtn" type="button">Default Mode</button>
+        </div>
+
+    </aside>
+
+    <script type="module" src="{% static 'scripts/index.js' %}"></script> 
+</body>
+
+</html>
