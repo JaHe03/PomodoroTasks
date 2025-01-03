@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = ['pomodorotasks.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['pomodorotasks.onrender.com', '127.0.0.1', 'localhost']
 
 
 SESSION_COOKIE_SECURE = not DEBUG
@@ -142,6 +142,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 STATICFILES_DIRS = [
     BASE_DIR / "server" / "frontEnd",
 ]
