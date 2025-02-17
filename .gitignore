@@ -3,3 +3,6 @@
 # Ignore .env file
 .env
 /staticfiles/
+__pycache__/
+*.pyc
+*.pyo
