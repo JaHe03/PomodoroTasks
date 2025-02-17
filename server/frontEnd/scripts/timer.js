@@ -6,11 +6,13 @@ let timeLeft; // Remaining time in seconds
 let sessionCount = 0;   // Count completed sessions
 let lastDuration = 25 * 60; // Default Pomodoro time in seconds
 let isPomodoro = true; // Track if the current session is a break or Pomodoro
+let originalTitle = document.title; // Store the original title of the tab
 
 // Get elements from the DOM
 const timeDisplay = document.getElementById('time');
 const sessionCountDisplay = document.getElementById('sessionCount');
 const sessionMessage = document.getElementById('sessionMessage'); // New element
+const tabtitle = document.querySelector("title"); // New element for tab title
 
 // Function to format time in mm:ss
 function formatTime(seconds) {
@@ -24,14 +26,17 @@ function startTimer() {
     if (isRunning) return;  // Prevent starting multiple timers
 
     isRunning = true;
+    updateTabTitle(); // Update the tab title when the timer starts
 
     timer = setInterval(() => {
         timeLeft--;
         timeDisplay.textContent = formatTime(timeLeft);
+        updateTabTitle(); // Update the tab title every second
 
         if (timeLeft === 0) {
             clearInterval(timer);
             isRunning = false;
+            tabtitle.textContent = originalTitle; // Reset to original title when timer ends
 
             if (isPomodoro) {
                 sessionCount++;
@@ -42,12 +47,21 @@ function startTimer() {
     }, 1000); // Ensure the timer runs every second
 }
 
+function updateTabTitle() {
+    if (isRunning) {
+        tabtitle.textContent = `⏳ ${formatTime(timeLeft)} - Pomodoro Task`;
+    } else {
+        tabtitle.textContent = originalTitle; // Reset to original title when stopped
+    }
+}
+
 // Function to pause the timer
 function pauseTimer() {
     if(pauseBtn.textContent === 'Pause') {
         clearInterval(timer);  // Stop the timer
         isRunning = false;     // Set running flag to false
         pauseBtn.textContent = 'Resume'; // Change button text to 'Resume'
+        tabtitle.textContent = "Paused - Pomodoro Task"; // Update tab title to indicate pause
     } else {
         startTimer();  // Resume the timer
         pauseBtn.textContent = 'Pause'; // Change button text to 'Pause'
